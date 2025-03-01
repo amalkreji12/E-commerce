@@ -21,6 +21,8 @@ export default [
       'react-refresh': reactRefresh,
     },
     rules: {
+      "react/jsx-uses-vars": "error",
+      "react/jsx-uses-react": "error",
       ...js.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
