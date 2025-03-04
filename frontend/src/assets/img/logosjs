@@ -1,0 +1,4 @@
+import logo1 from './lo1.jpg'
+import logo2 from './lo2.jpg'
+
+export const logos = { logo1, logo2 }

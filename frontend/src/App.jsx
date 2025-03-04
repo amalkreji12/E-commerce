@@ -9,26 +9,26 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import PlaceOrder from "./pages/PlaceOrder";
 import Orders from "./pages/Orders";
-
-const routes = (
-  <Router>
-    <Routes>
-      <Route path="/" exact element={<Home />} />
-      <Route path="/collection" exact element={<Collection />} />
-      <Route path="/about" exact element={<About />} />
-      <Route path="/contact" exact element={<Contact />} />
-      <Route path="/product/:productId" exact element={<Product />} />
-      <Route path="/cart" exact element={<Cart />} />
-      <Route path="/login" exact element={<Login />} />
-      <Route path="place-order" exact element={<PlaceOrder />} />
-      <Route path="orders" exact element={<Orders />} />
-    </Routes>
-  </Router>
-);
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   return (
-    <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">{routes}</div>
+    <Router>
+      <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+        <NavBar /> {/* NavBar is now inside Router */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/collection" element={<Collection />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/product/:productId" element={<Product />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/place-order" element={<PlaceOrder />} />
+          <Route path="/orders" element={<Orders />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
