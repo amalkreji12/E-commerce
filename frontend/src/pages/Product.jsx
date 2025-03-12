@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
+import RelatedProduct from "../components/RelatedProduct/RelatedProduct";
 
 const Product = () => {
   const { productId } = useParams();
@@ -92,9 +93,28 @@ const Product = () => {
 
       {/* Description and Review */}
 
-      <div className="">
-
+      <div className="mt-20">
+        <div className="flex">
+          <b className="border px-5 py-3 text-sm">Description</b>
+          <p className="border px-5 py-3 text-sm">Review (122)</p>
+        </div>
+        <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500">
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam,
+            exercitationem. Lorem ipsum dolor sit, amet consectetur adipisicing
+            elit. Minima voluptate temporibus id, accusamus enim quas? Lorem
+            ipsum dolor, sit amet consectetur adipisicing elit. Neque, eveniet.
+          </p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos,
+            officia. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Nam provident inventore veniam architecto, corrupti quo?
+          </p>
+        </div>
       </div>
+
+      {/* Related Product */}
+      <RelatedProduct category={productData.category} subCategory={productData.subCategory}/>
     </div>
   ) : (
     <div className="opacity-0">Loading...</div>
