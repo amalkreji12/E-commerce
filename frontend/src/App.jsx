@@ -12,13 +12,15 @@ import Orders from "./pages/Orders";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import SearchBar from "./components/SearchBar/SearchBar";
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
   return (
     <Router>
       <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+        <ToastContainer />
         <NavBar /> {/* NavBar is now inside Router */}
-        <SearchBar/>
+        <SearchBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/collection" element={<Collection />} />
@@ -30,7 +32,7 @@ function App() {
           <Route path="/place-order" element={<PlaceOrder />} />
           <Route path="/orders" element={<Orders />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </div>
     </Router>
   );
