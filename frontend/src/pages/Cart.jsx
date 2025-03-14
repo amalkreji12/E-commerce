@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title/Title";
 import { assets } from "../assets/assets";
+import CartTotal from "../components/CartTotal/CartTotal";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { currency, products, cartItems, updataQuantity } =
     useContext(ShopContext);
+  const navigate = useNavigate();
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
@@ -62,6 +65,15 @@ const Cart = () => {
                 </div>
               </div>
               <input
+                onChange={(e) =>
+                  e.target.value === "" || e.target.value === "0"
+                    ? null
+                    : updataQuantity(
+                        item._id,
+                        item.size,
+                        Number(e.target.value)
+                      )
+                }
                 type="number"
                 min={1}
                 defaultValue={item.quantity}
@@ -76,6 +88,21 @@ const Cart = () => {
             </div>
           );
         })}
+      </div>
+
+      <div className="flex justify-end my-20">
+        <div className="w-full sm:s-[450px]">
+          <CartTotal />
+
+          <div className="w-full text-end">
+            <button
+              onClick={() => navigate("/place-order")}
+              className="bg-black text-white text-sm my-8 px-8 py-3"
+            >
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
