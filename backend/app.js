@@ -2,10 +2,12 @@ import 'dotenv/config.js';
 import connectDB from './config/connection.js';
 import express from 'express';
 import cors from 'cors';
+import connectCloudinary from './config/cloudinary.js';
 
 const app = express();
 const port = process.env.PORT || 4000;
 connectDB()
+connectCloudinary();
 
 
 //Middlewares
