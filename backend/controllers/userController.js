@@ -7,12 +7,36 @@ import userModel from "../models/userModel.js";
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET)
 }
-//User Login
-const doLogin = async (req, res) => {
 
+
+//User Login API
+const doLogin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        // Check if user exists
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.json({ success: false, message: 'User does not exist' });
+        }
+        // Check if password is correct
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (isMatch) {
+            const token = createToken(user._id);
+            return res.json({
+                success: true,
+                message: 'User logged in successfully',
+                token,
+            });
+        } else {
+            res.json({ success: false, message: 'Invalid password' });
+        }
+    } catch (error) {
+        console.error("Error during login:", error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
 };
 
-//User Registration
+//User Registration API
 
 const doRegister = async (req, res) => {
     try {
