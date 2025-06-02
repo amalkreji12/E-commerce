@@ -84,7 +84,23 @@ const doRegister = async (req, res) => {
 //Admin Login
 
 const doAdminLogin = async (req, res) => {
-
+    try {
+        const { email, password } = req.body;
+        // Check if the provided email and password match the admin credentials
+        if (email === process.env.ADMIN_EMAIL && process.env.ADMIN_PASSWORD) {
+            const token = jwt.sign(email + password, process.env.JWT_SECRET);
+            res.json({
+                success: true,
+                message: 'Admin logged in successfully',
+                token,
+            })
+        } else {
+            res.json({ success: false, message: 'Invalid email or password' });
+        }
+    } catch (error) {
+        console.error("Error during admin login:", error);
+        res.status(500).json({ success: false, message: error.message || "Internal server error" });
+    }
 };
 
 
