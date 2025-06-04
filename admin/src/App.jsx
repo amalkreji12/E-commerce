@@ -3,13 +3,13 @@ import NavBar from "./conponents/NavBar";
 import SideBar from "./conponents/SideBar";
 import { Routes, Route } from "react-router-dom";
 import AddProduct from "./pages/addProduct";
-import ListProduct from "./pages/listProduct";
+import ListProduct from "./pages/ListProduct";
 import Order from "./pages/order";
 import Login from "./conponents/Login";
 import { ToastContainer } from "react-toastify";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
-
+export const currency = '₹';
 const App = () => {
   const [token, setToken] = useState(
     localStorage.getItem("token") ? localStorage.getItem("token") : ""
