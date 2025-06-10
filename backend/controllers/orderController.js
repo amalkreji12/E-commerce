@@ -38,7 +38,14 @@ const getAllOrders = async (req, res) => {
 
 // Get all orders for user
 const getUserOrders = async (req, res) => {
+    try {
+        const { userId } = req.body;
 
+        const orders = await orderModel.find({ userId });
+        res.json({ success: true, orders });
+    } catch (error) {
+        console.error("Error fetching user orders:", error);
+    }
 };
 
 //Update order status by admin
