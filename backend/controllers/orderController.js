@@ -33,7 +33,12 @@ const placeOrder = async (req, res) => {
 
 // Get all orders for admin
 const getAllOrders = async (req, res) => {
-
+    try {
+        const orders = await orderModel.find({});
+        res.json({ success: true, orders })
+    } catch (error) {
+        console.error("Error fetching user orders:", error);
+    }
 };
 
 // Get all orders for user
