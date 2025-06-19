@@ -20,7 +20,7 @@ const Order = ({ token }) => {
         { headers: { token } }
       );
       if (response.data.success) {
-        setOrders(response.data.orders);
+        setOrders(response.data.orders.reverse());
       } else {
         toast.error(response.data.message);
         console.error("Failed to fetch orders:", response.data.message);
